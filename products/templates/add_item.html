@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block body%}
+<form method="POST"  action="/signup">
+	{{form.csrf_token()}}
+	<label for='fname'>{{form.title.label}}</label>
+	{{form.title(size=100,placeholder="Title",id="title ",class="")}}
+	<br>
+	<label for='lname'>{{form.price.label}}</label>
+	{{form.price(,placeholder="$",id="price ",class="")}}	
+	<br>
+	
+	{% if form.errors%}
+	<ul>
+	{%for error in form.errors%}
+		<li>{{error}}</li>
+	{% endfor%}
+	</ul>
+	{%endif%}
+	
+	
+	{{form.submit(class="",id="submit")}}
+</form>
+{% endblock %}

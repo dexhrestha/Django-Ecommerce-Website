@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+
+{% block body%}
+<form method="POST"  action="/edit_item/{{form.id}}" enctype="multipart/form-data">
+	{{form.csrf_token}}
+	<label for='title'>{{form.title.label}}</label>
+	{{form.title(size=100,placeholder="Title",id="title ",class="")}}
+	{% if form.title.errors%}
+	<ul>
+	{%for error in form.title.errors%}
+		<li>{{error}}</li>
+	{% endfor%}
+	</ul>
+	{%endif%}
+	<br>
+	<label for='price'>{{form.price.label}}</label>
+	{{form.price(placeholder="$",id="price ",class="")}}	
+	<br>
+	{% if form.price.errors%}
+	<ul>
+	{%for error in form.price.errors%}
+		<li>{{error}}</li>
+	{% endfor%}
+	</ul>
+	{%endif%}
+	<label for='description'>{{form.description.label}}</label>
+	{{form.description(cols="35",rows="20",id="price ",class="")|safe}}	
+	
+	{% if form.description.errors%}
+	<ul>
+	{%for error in form.description.errors%}
+		<li>{{error}}</li>
+	{% endfor%}
+	</ul>
+	{%endif%}
+	{{form.submit(class="",id="submit")}}
+</form>
+{% endblock %}

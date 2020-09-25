@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+
+{% block body %}
+{% if content.items_|length > 0 %}
+	<table>
+		<tr>
+			
+			<th>Id</th>
+			<th>Title</th>
+			<th>Price ($)</th>
+			<th>Description</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		
+	{% for item in content.items_%}
+	<tr>
+		
+		<td>{{item.id}}</td>
+		<td>{{item.title}}</td>
+		<td>{{item.price}}</td>
+		<td>{{item.description}}</td>
+
+		<td><a href={{url_for('edit_item', id=item.id)}}>Edit</a></td>
+		<td><a href={{url_for('delete_item',id = item.id)}}>Delete</a></td>
+
+		
+	</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+	<h2> No any items </h2>
+{% endif %}
+
+{%  endblock %}

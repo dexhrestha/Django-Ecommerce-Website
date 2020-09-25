@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+{% block body%}
+
+<form method="POST"  action={{url_for('edit_user',id=id)}}>
+	{{form.csrf_token()}}
+	<label for='fname'>{{form.fname.label}}</label>
+	{{form.fname(size=30,placeholder="First Name",id="fname ",class="")}}
+	<br>
+	<label for='lname'>{{form.lname.label}}</label>
+	{{form.lname(size=30,placeholder="Last Name",id="lname ",class="")}}	
+	<br>
+	<label for='email'>{{form.email.label}}</label>
+	{{form.email(placeholder="Email",id="email ",class="")}}
+	{% if form.email.errors%}
+	<ul>
+	{%for error in form.email.errors%}
+		<li>{{error}}</li>
+	{% endfor%}
+	</ul>
+	{%endif%}	
+
+	{{form.submit(class="",id="submit")}}
+</form>
+
+
+
+{%endblock%}
